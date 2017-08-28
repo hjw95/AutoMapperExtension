@@ -87,5 +87,10 @@ namespace AutoMapper
         {
             return mappingExpression.ForMember(destinationMember, opt => opt.Ignore());
         }
+        
+        public static IMappingExpression<TSource, TDestination> Map<TSource, TDestination, TSourceMember, TDestinationMember>(this IMappingExpression<TSource, TDestination> mappingExpression, Expression<Func<TSource, TSourceMember>> sourceMember, Expression<Func<TDestination, TDestinationMember>> destinationMember)
+        {
+            return mappingExpression.ForMember(destinationMember, opt => opt.MapFrom(sourceMember));
+        }
     }
 }
